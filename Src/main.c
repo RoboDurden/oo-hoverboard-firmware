@@ -150,7 +150,7 @@ int main(void) {
 
   int lastSpeedL = 0, lastSpeedR = 0;
   int speedL = 0, speedR = 0;
-  float direction = 1;
+  //float direction = 1;  //ROBO unused variable
 
   #ifdef CONTROL_PPM
     PPM_Init();
