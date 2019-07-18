@@ -32,4 +32,6 @@ class Complex : public Point {
 
 You can compile this repo with my online compiler https://pionierland.de/hoverhack/index.php
 
-This is just the beginning :-)
+But nothing happens when you flash the firmware onto the hoverboard controller :-/
+
+# Ideas welcome !
