@@ -51,8 +51,8 @@ startup_stm32f103xe.s
 # binaries
 #######################################
 PREFIX = arm-none-eabi-
-CC = $(PREFIX)g++
-AS = $(PREFIX)g++ -x assembler-with-cpp
+CC = $(PREFIX)g++	#ROBO gcc -> g++
+AS = $(PREFIX)g++ -x assembler-with-cpp		#ROBO gcc -> g++
 CP = $(PREFIX)objcopy
 AR = $(PREFIX)ar
 SZ = $(PREFIX)size
