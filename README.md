@@ -4,8 +4,8 @@
 original firmware hack https://github.com/NiklasFauth/hoverboard-firmware-hack modified to conpile as c++ code :-)
 
 main.c contains test code:
-'''
-class Point;
+
+```class Point;
 
 class Point {
 public:
@@ -28,7 +28,7 @@ class Complex : public Point {
     }
 
 };
-'''
+```
 
 You can compile this repo with my online compiler https://pionierland.de/hoverhack/index.php
 
