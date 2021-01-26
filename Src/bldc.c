@@ -4,6 +4,7 @@
 #include "setup.h"
 #include "config.h"
 
+extern uint8_t bRobo;
 
 volatile int posl = 0;
 volatile int posr = 0;
@@ -143,10 +144,14 @@ int timer = 0;
 const int max_time = PWM_FREQ / 10;
 volatile int vel = 0;
 
+
 //scan 8 channels with 2ADCs @ 20 clk cycles per sample
 //meaning ~80 ADC clock cycles @ 8MHz until new DMA interrupt =~ 100KHz
 //=640 cpu cycles
 void DMA1_Channel1_IRQHandler() {
+
+  bRobo = 1;
+
   DMA1->IFCR = DMA_IFCR_CTCIF1;
   // HAL_GPIO_WritePin(LED_PORT, LED_PIN, 1);
 

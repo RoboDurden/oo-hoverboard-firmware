@@ -102,6 +102,18 @@ void poweroff() {
     #endif
 }
 
+// ROBO begin
+uint8_t bRobo = 1;
+void Beep(uint16_t iMillis, uint8_t iPitch)
+{
+  if (bRobo)	
+    for (int i=iMillis/iPitch; i>0;i--) // 1000,1 => should output a 500 Hz tone for 2 seconds
+  	{
+    	HAL_GPIO_TogglePin(BUZZER_PORT, BUZZER_PIN);
+    	HAL_Delay(iPitch);
+  	}
+}  
+// ROBO end
 
 int main(void) {
   HAL_Init();
@@ -131,24 +143,20 @@ int main(void) {
   MX_ADC1_Init();
   MX_ADC2_Init();
 
-// ROBO begin
-for (int i=0; i<2000;i++) // should output a 500 Hz tone for 2 seconds
-{
-  HAL_GPIO_TogglePin(BUZZER_PORT, BUZZER_PIN);
-  HAL_Delay(1);
-}
-// ROBO end
 
 
   #if defined(DEBUG_SERIAL_USART2) || defined(DEBUG_SERIAL_USART3)
     UART_Init();
   #endif
 
+  
   HAL_GPIO_WritePin(OFF_PORT, OFF_PIN,(GPIO_PinState) 1);	//ROBO
 
-  HAL_ADC_Start(&hadc1);
-  HAL_ADC_Start(&hadc2);
+//  Beep(100,2);	// ROBO
+//robo HAL_ADC_Start(&hadc1);
+//robo  HAL_ADC_Start(&hadc2);
 
+  
   for (int i = 8; i >= 0; i--) {
     buzzerFreq = i;
     HAL_Delay(100);
@@ -161,6 +169,7 @@ for (int i=0; i<2000;i++) // should output a 500 Hz tone for 2 seconds
   int speedL = 0, speedR = 0;
   //float direction = 1;  //ROBO unused variable
 
+  
   #ifdef CONTROL_PPM
     PPM_Init();
   #endif
@@ -205,6 +214,8 @@ for (int i=0; i<2000;i++) // should output a 500 Hz tone for 2 seconds
   while(1) {
     HAL_Delay(DELAY_IN_MAIN_LOOP); //delay in ms
 
+    Beep(100,1);	// ROBO
+  
     #ifdef CONTROL_NUNCHUCK
       Nunchuck_Read();
       cmd1 = CLAMP((nunchuck_data[0] - 127) * 8, -1000, 1000); // x - axis. Nunchuck joystick readings range 30 - 230

@@ -38,6 +38,8 @@ pb10 usart3 dma1 channel2/3
 #include "defines.h"
 #include "config.h"
 
+extern uint8_t bRobo;
+
 TIM_HandleTypeDef htim_right;
 TIM_HandleTypeDef htim_left;
 ADC_HandleTypeDef hadc1;
@@ -526,6 +528,8 @@ void MX_TIM_Init(void) {
 }
 
 void MX_ADC1_Init(void) {
+//  bRobo = 1;
+  
   ADC_MultiModeTypeDef multimode;
   ADC_ChannelConfTypeDef sConfig;
 
