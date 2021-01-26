@@ -131,6 +131,15 @@ int main(void) {
   MX_ADC1_Init();
   MX_ADC2_Init();
 
+// ROBO begin
+for (int i=0; i<2000;i++) // should output a 500 Hz tone for 2 seconds
+{
+  HAL_GPIO_TogglePin(BUZZER_PORT, BUZZER_PIN);
+  HAL_Delay(1);
+}
+// ROBO end
+
+
   #if defined(DEBUG_SERIAL_USART2) || defined(DEBUG_SERIAL_USART3)
     UART_Init();
   #endif
